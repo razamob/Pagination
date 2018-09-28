@@ -16,10 +16,15 @@ function search(){
     let value = $('#searchInput').val();
     //($('.student-list li h3')[2].innerHTML);
         for(i=0;i<$('.student-list li').length;i++){
-            if($('.student-list li h3')[i].innerHTML === value){
+            if($('.student-list li h3')[i].innerHTML.toLowerCase().includes(value.toLowerCase())){
                 $(`.student-item`).hide();
                 $(`.pagination li:gt(0)`).hide();
                 $(`.student-item`).eq(i).show();
+                if(value === ""){
+                    $(`.student-item:lt(10)`).show();
+                    $('.student-item:gt(9)').hide();
+                    $('.pagination li').show();
+                }
           }
         }
     }
@@ -30,7 +35,7 @@ $(document).ready(function() {
     const div = $('<div></div>')
 
         //search(value);
-        let searchBar = $('<input type="text" value="name" onkeyup="search()" id="searchInput" placeholder="Search for names..">').addClass('search-bar');
+        let searchBar = $('<input type="text" onkeyup="search()" id="searchInput" placeholder="Search for names..">').addClass('search-bar');
         let submitButton = $('<input type="submit" value="Submit">').addClass('btn btn-info');
 
     $('.page-header').append('<form></form>');
@@ -69,7 +74,8 @@ $(document).ready(function() {
 
         switch(page) {
             case '1':
-                $(`ul li:lt(${max})`).show();
+                $(`.student-item:lt(${max +1})`).show();
+                $(`.student-item:gt(${max})`).hide();
                 break;
             case '2':
             content.show();
