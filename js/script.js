@@ -12,21 +12,35 @@ let ul = $('<ul></ul>');
 let pageNumber;
 // Create a function to hide all of the items in the list except for the ten you want to show
 // Tip: Keep in mind that with a list of 54 students, the last page will only display four
+function search(){
+    let value = $('#searchInput').val();
+    //($('.student-list li h3')[2].innerHTML);
+        for(i=0;i<$('.student-list li').length;i++){
+            if($('.student-list li h3')[i].innerHTML === value){
+                $(`.student-item`).hide();
+                $(`.pagination li:gt(0)`).hide();
+                $(`.student-item`).eq(i).show();
+          }
+        }
+    }
 
 $(document).ready(function() {
+    
+
     const div = $('<div></div>')
 
-    let searchBar = $('<input type="text" id="searchInput" placeholder="Search for names..">');
-    let submitButton = $('<input type="submit" value="Submit">').addClass('btn btn-info');
+        //search(value);
+        let searchBar = $('<input type="text" value="name" onkeyup="search()" id="searchInput" placeholder="Search for names..">').addClass('search-bar');
+        let submitButton = $('<input type="submit" value="Submit">').addClass('btn btn-info');
 
     $('.page-header').append('<form></form>');
     $('.page-header form').append(searchBar);
     $('.page-header form').append(submitButton);
-  
-
 
     $('.page-header form').css({'float':'right'});
     searchBar.css({'margin-right':'10px', 'float':'left', 'text-align': 'right'});
+
+
 
     $('ul li:gt(9)').hide();
     div.addClass('pagination')
@@ -77,11 +91,15 @@ $(document).ready(function() {
                 content.show();
                 hidePage();
             }
+            
     })
+
+    
+    //let value = $("#search-bar").value.toUpperCase();
+  
     // $(this).text();
     //console.log($('a')[0].val());
     });
-
 //PASS The page number link. On the click of the page number.. load the appropriate lists for the page number
 // Create and append the pagination links - Creating a function that can do this is a good approach
 
