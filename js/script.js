@@ -5,19 +5,18 @@ FSJS project - List Filter and Pagination
 // Add variables that store DOM elements you will need to reference and/or manipulate
 //global variables to store dom elements
 
-let li = document.getElementsByTagName('li');
-let countLi = $('.student-list li').length;
+const li = document.getElementsByTagName('li');
+const countLi = $('.student-list li').length;
 //pages stores the number of list items divided by 10(10 list items per page)
-let pages = Math.ceil(countLi / 10);
-let ul = $('<ul></ul>');
-let pageNumber;
+const pages = Math.ceil(countLi / 10);
+const ul = $('<ul></ul>');
 // Create a function to hide all of the items in the list except for the ten you want to show
 // Tip: Keep in mind that with a list of 54 students, the last page will only display four
 
 //Search function that checks for input and matches with names in list. Changes page number to only 1.
 //Hides all other list items and only display list item that matches search
 function search(){
-    let value = $('#searchInput').val();
+    const value = $('#searchInput').val();
     //($('.student-list li h3')[2].innerHTML);
         for(i=0;i<$('.student-list li').length;i++){
             //if statement checks for test
@@ -42,8 +41,8 @@ $(document).ready(function() {
         const div = $('<div></div>')
 
         //search(value);
-        let searchBar = $('<input type="text" onkeyup="search()" id="searchInput" placeholder="Search for names..">').addClass('search-bar');
-        let submitButton = $('<input type="submit" value="Submit">').addClass('btn btn-info');
+        const searchBar = $('<input type="text" onkeyup="search()" id="searchInput" placeholder="Search for names..">').addClass('search-bar');
+        const submitButton = $('<input type="submit" value="Submit">').addClass('btn btn-info');
     //append form, button and search input.
     $('.page-header').append('<form></form>');
     $('.page-header form').append(searchBar);
@@ -71,10 +70,10 @@ $(document).ready(function() {
         //click function that tests for the page number clicked
     $('a').click(function(){
         //local variables that store math behind which list items to show
-        let page = $(this).text();
-        let min = (parseInt(page)*10)-10;
-        let max = (parseInt(page)*10) -1;
-        let content = $(`.student-item`);
+        const page = $(this).text();
+        const min = (parseInt(page)*10)-10;
+        const max = (parseInt(page)*10) -1;
+        const content = $(`.student-item`);
         $('.active').removeClass('active');
         $(this).addClass('active');
 
